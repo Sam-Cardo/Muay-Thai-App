@@ -1,0 +1,132 @@
+<!--loads django's static files-->
+{% load static %}
+
+<div class="header">
+
+    <div class="title">
+        <h1>MuayPro</h1>
+        <img class="header-img" src="{% static 'images/muaythailogo.jpg' %}" alt="MuayPro Logo">
+    </div>
+
+    <!--navigation for each page-->
+    <nav>
+        <div class="dashboard-btn">
+            <a href="/">Dashboard</a>
+        </div>
+
+        <div class="fighter-btn">
+            <a href="/fighters">Fighters</a>
+        </div>
+
+        <div class="schedule-btn">
+            <a href="/schedule">Schedule</a>
+        </div>
+
+        <div class="bouts-btn">
+            <a href="/bouts">Bouts</a>
+        </div>
+    </nav>
+
+
+</div>
+
+<!-- CSS styling for the header and navigation buttons -->
+<style>
+.header {
+    display: flex;
+    align-items: center;
+    padding: 25px 30px;
+    background: #ffffff;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.title h1 {
+    margin: 0;
+}
+
+.header-img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+nav {
+    display: flex;
+    gap: 12px;
+    margin-left: 30px;
+}
+
+.dashboard-btn {
+    background: #ffffff;
+    color: #000000;
+    text-decoration: none;
+    padding: 5px 16px;
+    border-radius: 6px;
+}
+
+.dashboard-btn a {
+    color: black;
+    text-decoration: none;
+}
+
+.dashboard-btn:hover {
+    text-decoration: underline;
+}
+
+.fighter-btn {
+    background: #ffffff;
+    color: #000000;
+    text-decoration: none;
+    padding: 5px 16px;
+    border-radius: 6px;
+}
+
+.fighter-btn a {
+    color: black;
+    text-decoration: none;
+}
+
+.fighter-btn:hover {
+    text-decoration: underline;
+}
+
+.schedule-btn {
+    background: #ffffff;
+    color: #000000;
+    text-decoration: none;
+    padding: 5px 16px;
+    border-radius: 6px;
+}
+
+.schedule-btn a {
+    color: black;
+    text-decoration: none;
+}
+
+.schedule-btn:hover {
+    text-decoration: underline;
+}
+
+.bouts-btn {
+    background: #ffffff;
+    color: #000000;
+    text-decoration: none;
+    padding: 5px 16px;
+    border-radius: 6px;
+}
+
+.bouts-btn a {
+    color: black;
+    text-decoration: none;
+}
+
+.bouts-btn:hover {
+    text-decoration: underline;
+}
+
+</style>

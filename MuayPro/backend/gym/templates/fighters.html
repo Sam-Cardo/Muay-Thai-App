@@ -1,0 +1,22 @@
+<!-- imports -->  
+{% include 'header.html' %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fighters</title>
+</head>
+<body>
+
+    <h1>Fighters</h1>
+
+    <!-- loops over fighters db and looks for certain records -->
+    {% for fighter in fighters %}
+        <h2>{{ fighter.name }}</h2>
+        <p>Nickname: {{ fighter.nickname }}</p>
+        <p>Weight Class: {{ fighter.weight_class }}</p>
+        <p>Record: {{ fighter.wins }} - {{ fighter.losses }}</p>
+    {% endfor %}
+
+</body>
+</html>
