@@ -9,6 +9,7 @@ export default function ScheduleScreen() {
 
       <Text style={styles.title}>Session Schedule</Text>
 
+      {/* Add Session Button with alert when pressed */}
       <Pressable
         style={styles.button}
         onPress={() => Alert.alert("New Session")}
@@ -17,11 +18,13 @@ export default function ScheduleScreen() {
       </Pressable>
 
       <ScrollView>
+        {/* Pad Work Card */}
         <View style={styles.card}>
           <Text style={styles.cardTitle}>Pad Work</Text>
           <Text>10:00 AM - 11:00 AM</Text>
           <Text>Coach: John</Text>
 
+          {/* Take Attendance Button with alert when pressed */}
           <Pressable
             style={styles.button}
             onPress={() => Alert.alert("Attendance", "Pad Work selected")}
@@ -29,12 +32,14 @@ export default function ScheduleScreen() {
             <Text style={styles.buttonText}>Take Attendance</Text>
           </Pressable>
         </View>
-
+        
+        {/* Clinch Training Card */}
         <View style={styles.card}>
           <Text style={styles.cardTitle}>Clinch Training</Text>
           <Text>12:00 PM - 1:00 PM</Text>
           <Text>Coach: Sam</Text>
 
+            {/* Take Attendance Button with alert when pressed */}
           <Pressable
             style={styles.button}
             onPress={() => Alert.alert("Attendance", "Clinch Training selected")}
@@ -43,11 +48,13 @@ export default function ScheduleScreen() {
           </Pressable>
         </View>
 
+        {/* Sparring Card */}
         <View style={styles.card}>
           <Text style={styles.cardTitle}>Sparring</Text>
           <Text>5:00 PM - 6:00 PM</Text>
           <Text>Coach: John</Text>
 
+          {/* Take Attendance Button with alert when pressed */}
           <Pressable
             style={styles.button}
             onPress={() => Alert.alert("Attendance", "Sparring selected")}
@@ -60,6 +67,7 @@ export default function ScheduleScreen() {
   );
 }
 
+{/* Styles */}
 const styles = StyleSheet.create({
   container: {
     flex: 1,

@@ -11,12 +11,14 @@ export default function FightManagementScreen() {
       <Text style={styles.title}>Fight Management</Text>
 
       <ScrollView>
+        {/* Upcoming Fights Card */}
         <View style={styles.card}>
           <Text style={styles.cardTitle}>Upcoming Fights</Text>
           <Text>John Smith vs. Mike Jones</Text>
           <Text>Date: 25 November</Text>
           <Text>Weight: 67 KG</Text>
 
+          {/* View Fight Button with alert when pressed */}
           <Pressable
             style={styles.button}
             onPress={() => Alert.alert("Fight Details")}
@@ -25,11 +27,13 @@ export default function FightManagementScreen() {
           </Pressable>
         </View>
 
+        {/* Fight History Card */}
         <View style={styles.card}>
           <Text style={styles.cardTitle}>Coach Feedback</Text>
           <Text>Keep your guard up when exiting the clinch.</Text>
           <Text>Work on checking low kicks.</Text>
 
+          {/* Add Feedback Button with alert when pressed */}
           <Pressable
             style={styles.button}
             onPress={() => Alert.alert("Add Coach Feedback")}
@@ -38,6 +42,7 @@ export default function FightManagementScreen() {
           </Pressable>
         </View>
 
+        {/* Fight Video Card */}
         <View style={styles.card}>
           <Text style={styles.cardTitle}>Fight Video</Text>
           <Text>Review the fighter's latest fight footage.</Text>
@@ -54,6 +59,7 @@ export default function FightManagementScreen() {
   );
 }
 
+{/* Styles */}
 const styles = StyleSheet.create({
   container: {
     flex: 1,

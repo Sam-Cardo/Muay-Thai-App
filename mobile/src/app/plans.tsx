@@ -7,14 +7,17 @@ export default function AITrainingScreen() {
     <View style={styles.container}>
       <NavigationMenu />
 
+      {/* Title and subtitle */}
       <Text style={styles.subtitle}>Personalised for Fighters</Text>
       <Text style={styles.title}>AI Training Planner</Text>
 
       <ScrollView>
+        {/* Build a Plan Card */}
         <View style={styles.card}>
           <Text style={styles.cardTitle}>Build a Plan</Text>
           <Text>Select a fighter to create a training plan.</Text>
 
+          {/* When select fighter is pressed it alerts the user */}
           <Pressable
             style={styles.button}
             onPress={() => Alert.alert("Select Fighter")}
@@ -22,6 +25,7 @@ export default function AITrainingScreen() {
             <Text style={styles.buttonText}>Select Fighter</Text>
           </Pressable>
 
+          {/* When generate plan is pressed it alerts the user */}
           <Pressable
             style={styles.button}
             onPress={() => Alert.alert("Training Plan", "Plan generation will be added later.")}
@@ -30,6 +34,7 @@ export default function AITrainingScreen() {
           </Pressable>
         </View>
 
+        {/* Weekly Plan Card */}
         <View style={styles.card}>
           <Text style={styles.cardTitle}>Weekly Plan</Text>
           <Text>Monday - Pad Work</Text>
@@ -43,6 +48,7 @@ export default function AITrainingScreen() {
   );
 }
 
+{/* Styles */}
 const styles = StyleSheet.create({
   container: {
     flex: 1,

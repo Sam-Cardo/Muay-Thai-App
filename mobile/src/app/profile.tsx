@@ -4,11 +4,13 @@ import NavigationMenu from "../components/NavigationMenu";
 
 export default function FighterProfileScreen() {
   return (
+
     <View style={styles.container}>
       <NavigationMenu />
 
       <Text style={styles.title}>Fighter Profile</Text>
 
+      {/* Fighter Information Card */}
       <ScrollView>
         <View style={styles.card}>
           <Text style={styles.cardTitle}>John Smith</Text>
@@ -17,6 +19,7 @@ export default function FighterProfileScreen() {
           <Text>Age: 22</Text>
           <Text>Record: 12 Wins - 3 Losses</Text>
 
+          {/* Edit Profile Button with a alert when pressed */}
           <Pressable
             style={styles.button}
             onPress={() => Alert.alert("Edit Profile")}
@@ -25,17 +28,20 @@ export default function FighterProfileScreen() {
           </Pressable>
         </View>
 
+          {/* Training Consistency Card */}
         <View style={styles.card}>
           <Text style={styles.cardTitle}>Training Consistency</Text>
           <Text>Sessions Attended: 18</Text>
           <Text>Sessions Missed: 2</Text>
         </View>
 
+          {/* Latest Coach Feedback Card */}
         <View style={styles.card}>
           <Text style={styles.cardTitle}>Latest Coach Feedback</Text>
           <Text>Good teep timing.</Text>
           <Text>Improve defensive movement.</Text>
 
+          {/* Add Feedback Button with alert when pressed */}
           <Pressable
             style={styles.button}
             onPress={() => Alert.alert("Add Feedback")}
@@ -44,13 +50,15 @@ export default function FighterProfileScreen() {
           </Pressable>
         </View>
 
+        {/* Recent Progress Card */}
         <View style={styles.card}>
           <Text style={styles.cardTitle}>Recent Progress</Text>
           <Text>Previous Weight: 69 KG</Text>
           <Text>Current Weight: 67 KG</Text>
           <Text>Goal Weight: 65 KG</Text>
         </View>
-
+        
+        {/* Recent Fights and History Card */}
         <View style={styles.card}>
           <Text style={styles.cardTitle}>Recent Fights and History</Text>
           <Text>12 Wins</Text>
@@ -62,6 +70,8 @@ export default function FighterProfileScreen() {
   );
 }
 
+
+{/* Styles */}
 const styles = StyleSheet.create({
   container: {
     flex: 1,

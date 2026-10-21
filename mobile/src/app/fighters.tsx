@@ -4,17 +4,20 @@ import NavigationMenu from "../components/NavigationMenu";
 
 export default function FightersScreen() {
   return (
+
     <View style={styles.container}>
       <NavigationMenu />
 
       <Text style={styles.title}>Fighters Roster</Text>
 
       <ScrollView>
+        {/* Fighter Cards */}
         <View style={styles.card}>
           <Text style={styles.cardTitle}>John Smith</Text>
           <Text>Record: 12 Wins - 3 Losses</Text>
           <Text>Weight Class: 67 KG</Text>
 
+          {/* View Profile Button with a alert when pressed */}
           <Pressable
             style={styles.button}
             onPress={() => Alert.alert("John Smith Profile")}
@@ -28,6 +31,7 @@ export default function FightersScreen() {
           <Text>Record: 8 Wins - 2 Losses</Text>
           <Text>Weight Class: 75 KG</Text>
 
+          {/* When View Profile is pressed it alerts the user */}
           <Pressable
             style={styles.button}
             onPress={() => Alert.alert("Mike Brown Profile")}
@@ -36,6 +40,7 @@ export default function FightersScreen() {
           </Pressable>
         </View>
 
+        {/* Add Fighter Button with alert when pressed */}
         <Pressable
           style={styles.button}
           onPress={() => Alert.alert("Add Fighter")}
@@ -44,13 +49,15 @@ export default function FightersScreen() {
         </Pressable>
       </ScrollView>
     </View>
+
   );
 }
 
+{/* Styles */}
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    padding: 15,
+    flex: 1, 
+    padding: 15, 
     paddingTop: 60,
     backgroundColor: "#111",
   },
