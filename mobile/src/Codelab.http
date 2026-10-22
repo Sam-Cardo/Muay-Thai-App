@@ -1,0 +1,19 @@
+### File Variables for the Codelab
+@client_id =183468047106-70vn8c87ib1aojlehvsm3911jv9tr37p.apps.googleusercontent.com
+@secret = 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
+@redirect_uri = https://www.google.com
+@accessToken=
+@refreshToken=
+
+
+### Open Google authorization
+https://accounts.google.com/o/oauth2/v2/auth?client_id=183468047106-70vn8c87ib1aojlehvsm3911jv9tr37p.apps.googleusercontent.com&redirect_uri=https://www.google.com&response_type=code&access_type=offline&scope=https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly
+
+
+### AUTHORIZATION ENDPOINTS
+
+# @name user
+POST https://oauth2.googleapis.com/token
+Content-Type: application/x-www-form-urlencoded
+
+code=authorization-code&client_id={{client_id}}&client_secret={{secret}}&redirect_uri={{redirect_uri}}&grant_type=authorization_code
