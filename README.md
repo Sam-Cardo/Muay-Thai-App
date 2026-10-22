@@ -95,10 +95,11 @@ This will be used for coaches to create training plans on certain weaknesses and
 ## Prerequisites
 Install the following before setting up the project:
 
-* Node.js and npm
-* Python
-* A SQL database supported by the project
-* Git
+* Node.js and npm - Used to install the frontend of the project
+* Python & Django - Used for the back end of this project
+* A SQL database supported by the project - Used for the backend to keep all the data sent from the app saved
+* Git - upload all of the files to and from github
+* React & Typescript - Used for making the frontend and UI/UX of this App
 
 Installation
 Clone the repository:
