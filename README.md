@@ -104,40 +104,52 @@ Install the following before setting up the project:
 Installation
 Clone the repository:
 
-### Windows 
-Once you download git 
-Open it by 
-1. Clicking the windows button on your computer
-2. Click the search bar 
-3. Search for git
-4. Double click it
-5. Then follow the steps below
+### Windows Setup
+
+Once you have installed Git:
+
+1. Click the **Windows** button on your computer.
+2. Search for **Git Bash**.
+3. Open Git Bash.
+4. Run the following commands to download the project:
 
 ```bash
 git clone <repository-url>
 cd <repository-folder>
 ```
 
-### Set up the backend:
+### Set Up the Backend
+
+Navigate to the backend folder and create a virtual environment:
 
 ```bash
 cd backend
-python -m venv .venv 
+python -m venv .venv
 ```
 
-### Activate the virtual environment: 
+### Activate the Virtual Environment
 
-# macOS / Linux
+### Windows PowerShell:
+
+```powershell
+.venv\Scripts\Activate.ps1
+```
+
+### Git Bash:
+
+```bash
+source .venv/Scripts/activate
+```
+
+### macOS / Linux:
+
 ```bash
 source .venv/bin/activate
 ```
 
-# Windows PowerShell
-```bash
- .venv\Scripts\Activate.ps1
-```
+### Install Dependencies and Set Up the Database
 
-Install dependencies and prepare the database: 
+Make sure you are in the backend folder and your virtual environment is activated. Then run:
 
 ```bash
 pip install -r requirements.txt
@@ -145,13 +157,27 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-### In a separate terminal, set up the frontend:
+The backend server should now be running. You can access it at:
 
-```bash
-cd frontend
-npm install
-npm run dev
+http://127.0.0.1:8000/
+
+## Frontend
+
+1. To start up the Frontend first 
+``` bash
+cd mobile
 ```
+
+2. Install all of the necessary dependencies and packages 
+``` bash
+npm install
+```
+
+3. Start React / Expo
+```
+npx expo start
+```
+
 
 ## Author 
 Samuel Cardo
