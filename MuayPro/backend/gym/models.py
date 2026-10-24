@@ -21,23 +21,6 @@ class Gym(models.Model):
     def __str__(self):
         return self.name
 
-# gym membership model to represent the relationship between users and gyms
-class GymMembership(models.Model):
-    gym = models.ForeignKey(Gym, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    role = models.CharField(max_length=20, default="fighter")
-    status = models.CharField(max_length=20, default="active")
-    joined_at = models.DateTimeField(auto_now_add=True)
-
-# ensure that a user can only have one membership per gym
-    class Meta:
-        constraints = [
-            models.UniqueConstraint(
-                fields=["gym", "user"],
-                name="unique_gym_membership",
-            )
-        ]
-
 # fighter model to represent a Muay Thai fighter
 class Fighter(models.Model):
     user = models.OneToOneField(
@@ -46,8 +29,8 @@ class Fighter(models.Model):
     name = models.CharField(max_length=100)
     nickname = models.CharField(max_length=100, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
-    height_cm = models.DecimalField(
-        max_digits=5, decimal_places=2, null=True, blank=True
+    height_feet = models.DecimalField(
+        max_digits=4, decimal_places=2, null=True, blank=True
     )
     weight_class = models.CharField(max_length=50, blank=True)
     stance = models.CharField(max_length=50, blank=True)
@@ -58,9 +41,6 @@ class Fighter(models.Model):
     emergency_contact_name = models.CharField(max_length=255, blank=True)
     emergency_contact_phone = models.CharField(max_length=30, blank=True)
 
-# define the database table name for the Fighter model
-    class Meta:
-        db_table = "fighter_profiles"
 
 # return the name of the fighter when the object is printed
     def __str__(self):
@@ -118,7 +98,7 @@ class Fight(models.Model):
 class ProgressEntry(models.Model):
     fighter = models.ForeignKey(Fighter, on_delete=models.CASCADE)
     recorded_by = models.ForeignKey(User, on_delete=models.CASCADE)
-    metric_type = models.CharField(max_length=50)
+    progress_type = models.CharField(max_length=50)
     value = models.DecimalField(max_digits=10, decimal_places=2)
     unit = models.CharField(max_length=30)
     recorded_at = models.DateTimeField(auto_now_add=True)
@@ -242,11 +222,3 @@ class WorkoutSession(models.Model):
     started_at = models.DateTimeField()
     ended_at = models.DateTimeField(null=True, blank=True)
     source = models.CharField(max_length=20, default="manual")
-
-# return a string representation of the workout session, showing the fighter's name and the session title
-class HeartRateReading(models.Model):
-    workout_session = models.ForeignKey(
-        WorkoutSession, on_delete=models.CASCADE
-    )
-    recorded_at = models.DateTimeField()
-    bpm = models.IntegerField()
