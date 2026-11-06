@@ -24,4 +24,5 @@ urlpatterns = [
     path('schedule/', views.schedule),
     path('bouts/', views.bouts),
     path('', views.home),
+    path('api/training-plans/', views.create_training_plan),
 ]   
