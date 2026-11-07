@@ -1,0 +1,20 @@
+[
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1500000$h3Y4N5UGqkXTfYdZrCk4V0$Xcn1sBTFn6ByiAr8c8YVrbhsm0MpPgWURD8yztwXmbs=",
+    "last_login": "2026-10-14T11:30:41.312Z",
+    "is_superuser": true,
+    "username": "Sam.cardo",
+    "first_name": "",
+    "last_name": "",
+    "email": "samcardx65@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-10-14T11:00:06.741Z",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]
