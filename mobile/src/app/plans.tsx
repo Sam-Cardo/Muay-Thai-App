@@ -1,146 +1,136 @@
+
 import { useState } from "react";
-import { View, Text, StyleSheet, ScrollView, Pressable, Alert, TextInput } from "react-native";
+import { View, Text, TextInput, Pressable, Alert, StyleSheet, ScrollView } from "react-native";
 import NavigationMenu from "../components/NavigationMenu";
 
-
-
 export default function AITrainingScreen() {
-      const [fighterName, setFighterName] = useState("");
-      const [experience, setExperience] = useState("Beginner");
-      const [weight, setWeight] = useState("");
-      const [goal, setGoal] = useState("");
-      const [trainingDays, setTrainingDays] = useState("4");
-      const [generatedPlan, setGeneratedPlan] = useState("");
-      
-  return (
-    <View style={styles.container}>
-      <NavigationMenu />
+  
+  // Use state hooks to store the user's input and the generated plan.
+  const [name, setName] = useState("");
+  const [weight, setWeight] = useState("");
+  const [goal, setGoal] = useState("");
+  const [experience, setExperience] = useState("Beginner");
+  const [days, setDays] = useState("4");
+  const [plan, setPlan] = useState("");
+  const [loading, setLoading] = useState(false);
 
-      {/* Title and subtitle */}
-      <Text style={styles.subtitle}>Personalised for Fighters</Text>
-      <Text style={styles.title}>AI Training Planner</Text>
+  async function generatePlan() {
+
+    // checks for missing infomation 
+    if (!name || !weight || !goal) {
+      Alert.alert("Error", "Please fill in all details.");
+      return;
+    }
+
+    // checks to make sure its in the valid range and its a number and not a decimal
+    if (Number(days) < 1 || Number(days) > 7 || !Number.isInteger(Number(days))) {
+      Alert.alert("Error", "Enter between 1 and 7 days.");
+      return;
+    }
+
+    // makes a post request to the django backend to generate a training plan based on the entered infomation.
+    try {
+      setLoading(true);
+
+      const response = await fetch("http://172.20.10.4:8000/api/training-plans/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          weight,
+          goal,
+          experience,
+          training_days: Number(days),
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        Alert.alert("Error", data.error || "Could not generate plan.");
+        return;
+      }
+
+      setPlan(data.training_plan);
+
+    } catch {
+      Alert.alert("Error", "Could not connect to Django.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+// This is the main part of the code where it puts the UI on screen and allows the user to enter their information and generate a training plan. 
+return (
+  <View style={styles.container}>
+    <NavigationMenu />
 
       <ScrollView>
-        {/* Build a Plan Card */}
-        <View style={styles.card}>
-              <Text style={styles.cardTitle}>Build a Plan</Text>
-              <Text>Select a fighter to create a training plan.</Text>
-              <TextInput
-                  style={styles.input} 
-                  placeholder="Fighter Name"
-                  placeholderTextColor="#888"
-                  value={fighterName}
-                  onChangeText={setFighterName}
-                />
+        <Text style={styles.title}>AI Training Planner</Text>
 
-                <TextInput
-                  style={styles.input}
-                  placeholder="Current Weight (kg)"
-                  placeholderTextColor="#888"
-                  keyboardType="numeric"
-                  value={weight}
-                  onChangeText={setWeight}
-                />
+        <TextInput
+          style={styles.input}
+          placeholder="Fighter Name"
+          value={name}
+          onChangeText={setName}
+        />
 
-                <TextInput
-                  style={styles.input}
-                  placeholder="Training Goal"
-                  placeholderTextColor="#888"
-                  value={goal}
-                  onChangeText={setGoal}
-                />
+        <TextInput
+          style={styles.input}
+          placeholder="Weight (kg)"
+          keyboardType="numeric"
+          value={weight}
+          onChangeText={setWeight}
+        />
 
-                <Text style={{ marginTop: 15, fontWeight: "bold" }}>
-                    Experience Level
-                  </Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Training Goal"
+          value={goal}
+          onChangeText={setGoal}
+        />
 
-                  <View style={styles.options}>
-                    {["Beginner", "Intermediate", "Advanced"].map((level) => (
-                      <Pressable
-                        key={level}
-                        style={[
-                          styles.option,
-                          experience === level && styles.selectedOption,
-                        ]}
-                        onPress={() => setExperience(level)}
-                      >
-                        <Text
-                          style={{
-                            color: experience === level ? "#fff" : "#111",
-                          }}
-                        >
-                          {level}
-                        </Text>
-                      </Pressable>
-                    ))}
-                  </View>
+        <Text style={styles.label}>Experience Level</Text>
 
-                  <Text style={{ marginTop: 15, fontWeight: "bold" }}>
-                    Training Days Per Week
-                  </Text>
+        <View style={styles.options}>
+          {["Beginner", "Intermediate", "Advanced"].map((level) => (
+            <Pressable
+              key={level}
+              style={[styles.option, experience === level && styles.selected]}
+              onPress={() => setExperience(level)}
+            >
+              <Text>{level}</Text>
+            </Pressable>
+          ))}
+        </View>
 
-                  <TextInput
-                    style={styles.input}
-                    placeholder="Number of days (1-7)"
-                    placeholderTextColor="#888"
-                    keyboardType="numeric"
-                    value={trainingDays}
-                    onChangeText={setTrainingDays}
-                  />
+        <TextInput
+          style={styles.input}
+          placeholder="Training Days (1-7)"
+          keyboardType="numeric"
+          value={days}
+          onChangeText={setDays}
+        />
 
-                {/* When select fighter is pressed it alerts the user */}
-                <Pressable
-                  style={styles.button}
-                  onPress={() => Alert.alert("Select Fighter")}
-                >
-                  <Text style={styles.buttonText}>Select Fighter</Text>
-                </Pressable>
+        <Pressable
+          style={styles.button}
+          onPress={generatePlan}
+          disabled={loading}
+        >
+          <Text style={styles.buttonText}>
+            {loading ? "Generating..." : "Generate Plan"}
+          </Text>
+        </Pressable>
 
-                {/* When generate plan is pressed it alerts the user */}
-                  <Pressable
-                    style={styles.button}
-                    onPress={() => {
-                      if (!fighterName || !weight || !goal) {
-                        Alert.alert("Missing Information", "Please fill in all fighter details.");
-                        return;
-                      }
-
-                      if (Number(trainingDays) < 1 || Number(trainingDays) > 7) {
-                        Alert.alert("Invalid Training Days", "Enter a number between 1 and 7.");
-                        return;
-                      }
-
-                      Alert.alert(
-                        "Fighter Information",
-                        `${fighterName}\n${experience}\n${weight} kg\n${goal}\n${trainingDays} days per week`
-                      );
-                    }}
-                  >
-                    <Text style={styles.buttonText}>Generate Plan</Text>
-                  </Pressable>
-
-              {/* Weekly Plan Card */}
-              <View style={styles.card}>
-                <Text style={styles.cardTitle}>Weekly Plan</Text>
-                <Text>Monday - Pad Work</Text>
-                <Text>Tuesday - Cardio</Text>
-                <Text>Wednesday - Clinch Training</Text>
-                <Text>Thursday - Strength</Text>
-                <Text>Friday - Sparring</Text>
-                  {generatedPlan !== "" && (
-                    <View style={styles.card}>
-                      <Text style={styles.cardTitle}>AI Generated Plan</Text>
-                      <Text>{generatedPlan}</Text>
-                    </View>
-                  )}
-              </View>
-          </View>
+        {plan !== "" && (
+          <Text style={styles.plan}>{plan}</Text>
+        )}
       </ScrollView>
     </View>
-  );
+  );  
 }
 
-{/* Styles */}
+// styles
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -148,34 +138,10 @@ const styles = StyleSheet.create({
     paddingTop: 60,
     backgroundColor: "#111",
   },
-  subtitle: {
-    color: "#ff0000",
-    marginTop: 15,
-  },
   title: {
+    color: "#fff",
     fontSize: 24,
-    color: "#fff",
     marginBottom: 20,
-  },
-  card: {
-    backgroundColor: "#fff",
-    padding: 15,
-    marginBottom: 10,
-  },
-  cardTitle: {
-    fontSize: 16,
-    fontWeight: "bold",
-    marginBottom: 10,
-  },
-  button: {
-    backgroundColor: "#ff0000",
-    padding: 10,
-    marginTop: 10,
-    alignItems: "center",
-  },
-  buttonText: {
-    color: "#fff",
-    fontWeight: "bold",
   },
   input: {
     backgroundColor: "#eee",
@@ -183,16 +149,39 @@ const styles = StyleSheet.create({
     marginTop: 10,
     color: "#000",
   },
+  label: {
+    color: "#fff",
+    marginTop: 15,
+  },
   options: {
     flexDirection: "row",
     marginTop: 10,
   },
   option: {
+    backgroundColor: "#eee",
     padding: 10,
     marginRight: 10,
-    backgroundColor: "#eee",
   },
-  selectedOption: {
+  selected: {
     backgroundColor: "#ff0000",
+  },
+  button: {
+    backgroundColor: "#ff0000",
+    padding: 12,
+    marginTop: 20,
+    alignItems: "center",
+  },
+  buttonText: {
+    color: "#fff",
+    fontWeight: "bold",
+  },
+  plan: {
+    color: "#fff",
+    fontSize: 15,
+    lineHeight: 24,
+    marginTop: 20,
+    padding: 15,
+    backgroundColor: "#222",
+    borderRadius: 5,
   },
 });

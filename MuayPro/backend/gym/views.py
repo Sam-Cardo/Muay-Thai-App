@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-# Create your views here.
+# imports
 from .models import Fighter
 
 from rest_framework.decorators import api_view
@@ -27,27 +27,30 @@ def schedule(request):
 def bouts(request):
     return render(request, 'bouts.html', {'bouts': bouts})
 
-
-
+# makes sure it only accepts post requests 
 @api_view(['POST'])
+
 def create_training_plan(request):
 
+    # gets fighter infomation from the entered infomation and stores it in a variable called fighter_data
     fighter_data = request.data
 
-    # Generate the training plan using Groq
+    # calls the generate_training_plan function from the gemini_service.py file and passes the fighter_data to it. The returned plan is stored in a variable called plan.
     plan = generate_training_plan(fighter_data)
 
-    # Get the coach and gym
+    # Get the coach and gym from the database.  
     coach = User.objects.first()
     gym = Gym.objects.first()
 
-    # Check that a coach and gym exist
+    # Check that a coach and gym exist if not, return an error response with a 400 status code.
     if not coach or not gym:
         return Response({
             "error": "A coach and gym must exist before saving a plan."
         }, status=400)
 
-    # Save the training plan
+    # Save the training plan to the database with the coach, gym, title, goal, generated_by_ai, plan_content, and status fields. 
+    # The title is generated using the fighter's name and the goal is taken from the fighter_data. 
+
     training_plan = TrainingPlan.objects.create(
         coach=coach,
         gym=gym,
@@ -58,6 +61,7 @@ def create_training_plan(request):
         status="draft"
     )
 
+# returns a response with the training plan's id, title, and plan_content in JSON format with a 201 status code.
     return Response({
         "id": training_plan.id,
         "title": training_plan.title,
