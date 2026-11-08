@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
     flex: 1, // Ensures the container takes up the full height of the screen
     padding: 20, // Adds padding around the content
     paddingTop: 60, // Adds extra padding at the top for spacing
-    backgroundColor: "#f5f5f5", // Sets a light gray background color for the dashboard
+    backgroundColor: "#000000", // Sets a light gray background color for the dashboard
   },
   title: {
     fontSize: 24, // Sets the font size for the title text
