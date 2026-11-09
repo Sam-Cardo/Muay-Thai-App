@@ -1,2 +1,4 @@
 
 mobile/src/components/Muay Thai App.code-workspace
+# .gitignore
+*.env
