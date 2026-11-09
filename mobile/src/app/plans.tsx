@@ -71,6 +71,7 @@ return (
         <TextInput
           style={styles.input}
           placeholder="Fighter Name"
+          placeholderTextColor="#030303"
           value={name}
           onChangeText={setName}
         />
@@ -78,6 +79,7 @@ return (
         <TextInput
           style={styles.input}
           placeholder="Weight (kg)"
+          placeholderTextColor="#030303"
           keyboardType="numeric"
           value={weight}
           onChangeText={setWeight}
@@ -86,6 +88,7 @@ return (
         <TextInput
           style={styles.input}
           placeholder="Training Goal"
+          placeholderTextColor="#030303"
           value={goal}
           onChangeText={setGoal}
         />
@@ -107,6 +110,7 @@ return (
         <TextInput
           style={styles.input}
           placeholder="Training Days (1-7)"
+          placeholderTextColor="#030303"
           keyboardType="numeric"
           value={days}
           onChangeText={setDays}
@@ -147,7 +151,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#eee",
     padding: 10,
     marginTop: 10,
-    color: "#000",
+    color: "#000000",
   },
   label: {
     color: "#fff",
