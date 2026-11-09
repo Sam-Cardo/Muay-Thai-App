@@ -40,6 +40,8 @@ def generate_training_plan(fighter):
 
     Include rest days where appropriate.
 
+    Put the Rest Days in the correct place in the week based on the number of training days per week.
+
     IMPORTANT:
     - Do not use Markdown.
     - Do not use tables.
