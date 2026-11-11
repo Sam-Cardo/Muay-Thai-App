@@ -15,6 +15,8 @@ const screens = [
   { name: "Training Plans", path: "/plans" },
   { name: "Fights", path: "/fights" },
   { name: "Profile", path: "/profile" },
+  { name: "Sign In", path: "/sign-in" },
+  { name: "Register", path: "/register" },
 ];
 
 export default function NavigationMenu() {

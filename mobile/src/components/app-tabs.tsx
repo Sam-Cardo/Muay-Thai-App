@@ -25,7 +25,7 @@ export default function AppTabs() {
         options={{
           title: 'Home',
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="home-outline" size={size} color={color} />
+            <Ionicons name="home-outline" size={size} color={String(color)} />
           ),
         }}
       />
@@ -35,7 +35,7 @@ export default function AppTabs() {
         options={{
           title: 'Fighters',
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="people-outline" size={size} color={color} />
+            <Ionicons name="people-outline" size={size} color={String(color)} />
           ),
         }}
       />
@@ -45,7 +45,7 @@ export default function AppTabs() {
         options={{
           title: 'Training',
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="calendar-outline" size={size} color={color} />
+            <Ionicons name="calendar-outline" size={size} color={String(color)} />
           ),
         }}
       />
@@ -55,7 +55,7 @@ export default function AppTabs() {
         options={{
           title: 'Plans',
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="clipboard-outline" size={size} color={color} />
+            <Ionicons name="clipboard-outline" size={size} color={String(color)} />
           ),
         }}
       />
@@ -65,7 +65,7 @@ export default function AppTabs() {
         options={{
           title: 'Fights',
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="trophy-outline" size={size} color={color} />
+            <Ionicons name="trophy-outline" size={size} color={String(color)} />
           ),
         }}
       />
@@ -75,10 +75,22 @@ export default function AppTabs() {
         options={{
           title: 'Profile',
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="person-circle-outline" size={size} color={color} />
+            <Ionicons name="person-circle-outline" size={size} color={String(color)} />
           ),
         }}
       />
+
+      <Tabs.Screen
+        name="sign-in"
+        options={{
+          title: "Sign In",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="log-in-outline" size={size} color={String(color)} />
+          ),
+        }}
+      />
+
+      
     </Tabs>
   );
 }

@@ -1,13 +1,11 @@
 
 import { View, Text, StyleSheet, ScrollView, Pressable, Alert } from "react-native";
-import NavigationMenu from "../components/NavigationMenu";
+import NavigationMenu from "../../components/NavigationMenu";
 
 export default function FightManagementScreen() {
   return (
     <View style={styles.container}>
-      <NavigationMenu />
 
-      <Text style={styles.subtitle}>Fights and History</Text>
       <Text style={styles.title}>Fight Management</Text>
 
       <ScrollView>

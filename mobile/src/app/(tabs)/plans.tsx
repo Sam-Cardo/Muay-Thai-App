@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { View, Text, TextInput, Pressable, Alert, StyleSheet, ScrollView } from "react-native";
-import NavigationMenu from "../components/NavigationMenu";
+import NavigationMenu from "../../components/NavigationMenu";
 
 export default function AITrainingScreen() {
   

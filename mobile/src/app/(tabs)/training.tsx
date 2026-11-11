@@ -1,11 +1,10 @@
 
 import { View, Text, StyleSheet, ScrollView, Pressable, Alert } from "react-native";
-import NavigationMenu from "../components/NavigationMenu";
+import NavigationMenu from "../../components/NavigationMenu";
 
 export default function ScheduleScreen() {
   return (
     <View style={styles.container}>
-      <NavigationMenu />
 
       <Text style={styles.title}>Session Schedule</Text>
 
